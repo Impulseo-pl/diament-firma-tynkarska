@@ -153,7 +153,7 @@ p,li,blockquote,dd{text-wrap:pretty}
   backdrop-filter:saturate(140%) blur(10px);
   border-bottom:var(--hairline);
 }
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);height:72px}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--space-5);height:92px}
 /* ANTY-NACHODZENIE (K. 05.08.2026): długa nazwa firmy + przycisk z pełnym numerem nie mieściły się w pasku
    i flex ściskał linki PONIŻEJ ich treści - "Kontakt" wchodził na ramkę "Zadzwoń +48 ...". Teraz ustępuje
    nazwa marki (skrót wielokropkiem), a menu i przycisk nigdy się nie kurczą ani nie zachodzą na siebie. */
@@ -431,7 +431,7 @@ footer{background:var(--dark);color:#fff;padding-block:var(--space-9) var(--spac
   .foot-grid{gap:var(--space-6)}
 }
 @media(max-width:680px){
-  .nav-links{position:fixed;inset:72px 0 auto 0;background:var(--paper);flex-direction:column;align-items:stretch;
+  .nav-links{position:fixed;inset:96px 0 auto 0;background:var(--paper);flex-direction:column;align-items:stretch;
     gap:0;padding:var(--space-4) 6%;border-bottom:var(--hairline);box-shadow:var(--sh-md);
     transform:translateY(-120%);transition:transform var(--dur) var(--ease)}
   .nav-links.open{transform:translateY(0)}
@@ -501,7 +501,7 @@ section{padding-block:clamp(64px,8vw,128px)}
 .nav{transition:box-shadow .4s ease,background .4s ease}
 .nav.is-stuck{box-shadow:0 1px 0 var(--line),0 14px 30px -24px rgba(0,0,0,.45)}
 .nav-inner{transition:height .35s var(--ease)}
-.nav.is-stuck .nav-inner{height:60px}
+.nav.is-stuck .nav-inner{height:80px}
 
 /* 6) MANIFESTO — pełnoekranowy cytat-bohater (zastępuje generyczne „Dlaczego my") */
 .manifesto{background:var(--paper-2);text-align:center}
@@ -529,10 +529,16 @@ section{padding-block:clamp(64px,8vw,128px)}
 @media(max-width:760px){.gateways{grid-template-columns:1fr}.gateway{aspect-ratio:16/10}}
 
 /* 8) LOGO klienta w nagłówku (gdy podane --logo) */
-/* 52px domyślnie (feedback Bartka 06.07.2026: 40px ginęło, uwaga padła 3x; ~56px sprawdzone na żywym demie anna-borowiec-makeup) */
-.brand-logo{height:64px;width:auto;max-width:300px;object-fit:contain;display:block}
-.nav.is-stuck .brand-logo{height:52px}
-@media(max-width:680px){.brand-logo{height:46px;max-width:210px}}
+/* Powiększone + w formie "odznaki" (K. 19.08.2026: logo ma być większe, pasek bardziej premium) -
+   logo klienta jest czarno-białe na białym tle, więc dostaje białą kartę z cieniem, żeby nie
+   wyglądało jak przypadkowy kwadrat, gdy pasek jest przezroczysty nad zdjęciem hero. */
+.brand-logo{height:88px;width:auto;max-width:320px;object-fit:contain;display:block;
+  background:#fff;border-radius:12px;padding:7px 14px;
+  box-shadow:0 8px 22px -10px rgba(0,0,0,.45);
+  transition:height .35s var(--ease),transform .3s var(--ease),box-shadow .3s var(--ease)}
+.brand-has-logo:hover .brand-logo{transform:translateY(-1px) scale(1.03);box-shadow:0 12px 28px -10px rgba(0,0,0,.5)}
+.nav.is-stuck .brand-logo{height:70px}
+@media(max-width:680px){.brand-logo{height:56px;max-width:230px;padding:5px 10px;border-radius:10px}}
 
 
 /* === RWD: nagłówki na wąskich ekranach (dodane 17.07.2026 razem z fixem clamp) ===
@@ -936,7 +942,7 @@ main{display:block}
 .nav{position:fixed;left:0;right:0;backdrop-filter:none;border-bottom:1px solid transparent;z-index:100;transition:transform .35s var(--ease),background .35s ease,box-shadow .35s ease}
 .nav.nav-hidden{transform:translateY(-100%)}
 .nav.is-stuck{background:transparent;box-shadow:none;border-bottom-color:transparent}
-.nav.is-stuck .nav-inner{height:64px}
+.nav.is-stuck .nav-inner{height:88px}
 .nav .brand{flex-direction:row;align-items:baseline;gap:.6rem;line-height:1}
 .nav .brand .name{font-family:var(--font-display);font-weight:600;font-size:1.5rem;text-transform:uppercase;letter-spacing:.14em}
 .nav .brand .sub{margin-top:0;padding-left:.65rem;border-left:1px solid currentColor;font-size:.66rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase}
@@ -954,7 +960,7 @@ main{display:block}
 .nav .nav-links a:not(.btn-accent):hover,.nav .nav-links a.active:not(.btn-accent){color:#fff}
 .nav .nav-links a:not(.btn-accent)::after{background:#fff}
 .nav .nav-toggle span{background:#f5f1ea}
-.nav.nav-solid{background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:var(--hairline)}
+.nav.nav-solid{background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:saturate(140%) blur(10px);border-bottom:var(--hairline);box-shadow:0 12px 30px -22px rgba(0,0,0,.55)}
 .nav.nav-solid .brand .name{color:var(--ink)}
 .nav.nav-solid .brand .sub{color:var(--accent-d)}
 .nav.nav-solid .nav-links a:not(.btn-accent){color:var(--ink-soft)}
@@ -963,7 +969,7 @@ main{display:block}
 .nav.nav-solid .nav-toggle span{background:var(--ink)}
 .nav.nav-solid.nav-hidden{background:transparent;box-shadow:none;border-bottom-color:transparent}
 @media(min-width:681px){
-.nav .nav-inner{position:relative;height:64px}
+.nav .nav-inner{position:relative;height:108px}
 .nav .nav-links{flex:1;justify-content:center;gap:clamp(1rem,2.2vw,1.9rem);padding-right:15.5rem}
 .nav .nav-links a.btn-accent{position:absolute;right:0;top:50%;transform:translateY(-50%);--klocek-stoi:translateY(-50%);margin:0}
 .nav:not(.nav-solid) .nav-links a.btn-accent{background:transparent;border-color:rgba(245,241,234,.55);color:#f5f1ea}
